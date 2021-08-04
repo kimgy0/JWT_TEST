@@ -45,7 +45,14 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     //인증이나 권한이 필요한 주소요청이 있을 때 해당 필터를 타게됨.
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        super.doFilterInternal(request, response, chain);
+//        super.doFilterInternal(request, response, chain);
+        /**
+         * 비하인드.
+         * 이거 주석처리 해준 이유는 맨밑에 dofilter 로 다른 필터 넘겨주다가 response가 두번 이루어지면
+         * 오류가 나기때문
+         */
+
+
         log.info("인증이나 권한이 필요한 주소 요청이 됨.==========do filter");
         String jwtHeader = request.getHeader("Authorization");
         log.info("jwtHeader : {}" ,jwtHeader);
